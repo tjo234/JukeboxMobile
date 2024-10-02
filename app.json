@@ -19,12 +19,14 @@
         "resizeMode": "contain",
         "backgroundColor": "#15131c"
       },
+      "bundleIdentifier": "com.tjo234.JukeboxMobile"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#15131c"
-      }
+      },
+      "package": "com.tjo234.JukeboxMobile"
     },
     "web": {
       "bundler": "metro",
@@ -36,6 +38,11 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "eas": {
+        "projectId": "90dbf2ba-25eb-4c7c-ae95-4a7e17afdac3"
+      }
     }
   }
 }
