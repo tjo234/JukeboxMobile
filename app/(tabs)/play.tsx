@@ -4,7 +4,6 @@ import { HelloWave } from '@/components/HelloWave';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
-import { JukeboxConnect } from '@/components/jukebox/JukeboxConnect';
 
 export default function HomeScreen() {
   return (
@@ -17,7 +16,7 @@ export default function HomeScreen() {
         />
       }>
       <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Jukebox Remote</ThemedText>
+        <ThemedText type="title">Now Playing</ThemedText>
       </ThemedView>
       <ThemedView style={styles.stepContainer}>
         <ThemedText>
@@ -25,8 +24,7 @@ export default function HomeScreen() {
         </ThemedText>  
         <ThemedText>
           Requires a server running MPD somewhere on the local network.{"\n"}
-        </ThemedText>
-        <JukeboxConnect></JukeboxConnect>
+        </ThemedText>  
       </ThemedView>
     </ParallaxScrollView>
   );

@@ -19,14 +19,24 @@
         "resizeMode": "contain",
         "backgroundColor": "#15131c"
       },
-      "bundleIdentifier": "com.tjo234.JukeboxMobile"
+      "bundleIdentifier": "com.tjo234.JukeboxMobile",
+       "infoPlist": {
+        "NSBonjourServices": ["_.mpd._tcp"],
+        "NSLocalNetworkUsageDescription": "Allow Jukebox to discover MPD servers on the local network."
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#15131c"
       },
-      "package": "com.tjo234.JukeboxMobile"
+      "package": "com.tjo234.JukeboxMobile",
+       "permissions": [
+        "android.permission.ACCESS_WIFI_STATE",
+        "android.permission.ACCESS_NETWORK_STATE",
+        "android.permission.CHANGE_WIFI_MULTICAST_STATE",
+        "android.permission.INTERNET"
+      ]
     },
     "web": {
       "bundler": "metro",

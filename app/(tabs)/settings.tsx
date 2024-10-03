@@ -1,27 +1,22 @@
-import { Image, StyleSheet, Platform } from 'react-native';
-
-import ParallaxScrollView from '@/components/ParallaxScrollView';
+import { View, StyleSheet } from 'react-native';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 
-export default function HelpScreen() {
+export default function SettingsScreen() {
   return (
-    <ThemedView screenOptions={{ headerShown: true }}>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Settings</ThemedText>
-      </ThemedView>
+    <ThemedView style={styles.viewContainer}>
+      <ThemedText type="title">Settings</ThemedText>
     </ThemedView>
   );
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
+  viewContainer: {
+    backgroundColor: '#000',
     flexDirection: 'row',
     alignItems: 'center',
     gap: 8,
-    top: 100
+    top: 20,
+    padding: 20
   },
-  stepContainer: {
-    gap: 8,
-  }
 });

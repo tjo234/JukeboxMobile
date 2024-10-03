@@ -14,12 +14,23 @@ export default function TabLayout() {
       tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
       headerShown: false,
     }}>
+
     <Tabs.Screen
     name="index"
     options={{
-      title: 'Home',
+      title: 'Connect',
       tabBarIcon: ({ color, focused }) => (
-        <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color} />
+        <TabBarIcon name={focused ? 'server' : 'server-outline'} color={color} />
+        ),
+    }}
+    />
+
+    <Tabs.Screen
+    name="play"
+    options={{
+      title: 'Play',
+      tabBarIcon: ({ color, focused }) => (
+        <TabBarIcon name={focused ? 'musical-notes' : 'musical-notes-outline'} color={color} />
         ),
     }}
     />
