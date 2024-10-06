@@ -21,7 +21,7 @@
       },
       "bundleIdentifier": "com.tjo234.JukeboxMobile",
        "infoPlist": {
-        "NSBonjourServices": ["_.mpd._tcp"],
+        "NSBonjourServices": ["_mpd._tcp."],
         "NSLocalNetworkUsageDescription": "Allow Jukebox to discover MPD servers on the local network."
       }
     },

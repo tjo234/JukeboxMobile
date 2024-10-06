@@ -3,25 +3,48 @@ import { View, Text, TextInput, Button, StyleSheet, TouchableHighlight, NativeEv
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
+import Zeroconf from 'react-native-zeroconf';
 
-import MPD from './MPD';
-
+const zeroconf = new Zeroconf();
 
 export function JukeboxConnect() {
-  const [servers, setServers] = useState(['raspberrypi.local:6600']);
 
-  const onConnectServer = () => {
-    alert('Clicked!')
-  };
+  const [servers, setServers] = useState([]);
+
+  zeroconf.on('resolved', device => {
+    console.log('[Resolve]', JSON.stringify(device, null, 2));
+    setServers([...servers, device]);
+  });
+
+  console.log('Running TCP Scan....')
+  zeroconf.scan('mpd', 'tcp', 'local.');
+
+  useEffect(() => {
+    console.log('UseEffect: Start');
+    return () => {
+      console.log('Stopping TCP Scan');
+      zeroconf.stop();
+    };
+  }, [servers]);
+
+  const onButtonPress = () => {
+    alert('Click');
+  }
+
   return (
     <ThemedView>
-      <ThemedText>CONNECT TO SERVER{'\n'}</ThemedText>
-      {servers.map((s) => (
-        <TouchableHighlight style={styles.container} onPress={onConnectServer}>
-        <View style={styles.btnContainer}>
-         <Ionicons name="server" size="30" style={styles.btnIcon} />
-         <ThemedText style={styles.text}>{s}</ThemedText>
-        </View>
+      <ThemedText>
+        <Ionicons name="server-outline" size={20}></Ionicons>
+        &nbsp;CONNECT TO SERVER{'\n'}
+      </ThemedText>
+      {servers.map(server => (
+        <TouchableHighlight key={server} style={styles.btnContainer} onPress={onButtonPress}>
+          <View>
+            <ThemedText style={styles.h1}> 
+              {server.name}
+            </ThemedText>
+            <ThemedText style={styles.addr}>http://{server.host.slice(0, -1)}:{server.port}</ThemedText>
+          </View>
         </TouchableHighlight>
       ))}
     </ThemedView>
@@ -33,24 +56,20 @@ const styles = StyleSheet.create({
     flexDirection: 'col',
     alignItems: 'left',
   },
-   btnContainer: {
-    backgroundColor: '#000',
+  btnContainer: {
+    backgroundColor: '#ccc',
     flex: 1,
-    flexDirection: 'row',
+    flexDirection: 'column',
     justifyContent: 'center',
-    borderRadius: 30,  
-    color: 'white',
+    borderRadius: 10,  
     padding: 20,
   },
-  btnIcon: {
-    color: 'white',
-  },
   h1: {
-    size: 32,
+    size: 28,
+    fontWeight: 'bold'
   },
-  text: {
-    marginLeft: 20,
-    marginTop:5,
-    fontSize: 24
+  addr: {
+    fontSize:12,
+    fontStyle: 'italic'
   }
 });
