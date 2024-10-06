@@ -6,26 +6,25 @@ import { ThemedView } from '@/components/ThemedView';
 import Zeroconf from 'react-native-zeroconf';
 
 const zeroconf = new Zeroconf();
+let isScanning = false;
 
 export function JukeboxConnect() {
 
   const [servers, setServers] = useState([]);
 
   zeroconf.on('resolved', device => {
-    console.log('[Resolve]', JSON.stringify(device, null, 2));
+    console.log('[Resolved]', JSON.stringify(device, null, 2));
     setServers([...servers, device]);
   });
 
-  console.log('Running TCP Scan....')
-  zeroconf.scan('mpd', 'tcp', 'local.');
-
-  useEffect(() => {
-    console.log('UseEffect: Start');
-    return () => {
-      console.log('Stopping TCP Scan');
+  if (isScanning == false) {
+    isScanning = true;
+    console.log('Running TCP Scan....')
+    zeroconf.scan('mpd', 'tcp', 'local.');
+    setTimeout(function(){
       zeroconf.stop();
-    };
-  }, [servers]);
+    }, 10*1000)
+  }
 
   const onButtonPress = () => {
     alert('Click');

@@ -21,12 +21,9 @@ export default function HomeScreen() {
       </ThemedView>
       <ThemedView style={styles.stepContainer}>
         <ThemedText>
-          Remote control for Media Player Daemon.
-        </ThemedText>  
-        <ThemedText>
-          Requires a server running MPD somewhere on the local network.{"\n"}
+          Remote control for Media Player Daemon.{'\n'}
         </ThemedText>
-        <JukeboxConnect></JukeboxConnect>
+        <JukeboxConnect />
       </ThemedView>
     </ParallaxScrollView>
   );
